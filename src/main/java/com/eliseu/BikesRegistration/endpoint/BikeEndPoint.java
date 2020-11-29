@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class BikeEndPoint {
     }
 
     @PostMapping(path = "/bikes")
-    public ResponseEntity<?> insert(@RequestBody Bike bike) {
+    public ResponseEntity<?> insert(@Valid @RequestBody Bike bike) {
         bike = bikeService.insert(bike);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(bike.getId()).toUri();

@@ -1,6 +1,10 @@
 package com.eliseu.BikesRegistration.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Positive;
 import java.time.LocalDate;
 
 @Entity
@@ -10,11 +14,19 @@ public class Bike {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotBlank(message = "Description is mandatory")
     private String description;
+    @NotBlank(message = "Model is mandatory")
     private String model;
+    @NotNull(message = "Price is mandatory")
+    @Positive
     private Double price;
+    @NotNull(message = "PurchaseDate is mandatory")
+    @Past
     private LocalDate purchaseDate;
+    @NotBlank(message = "BuyerName is mandatory")
     private String buyerName;
+    @NotBlank(message = "Store is mandatory")
     private String store;
 
     public Bike() {
