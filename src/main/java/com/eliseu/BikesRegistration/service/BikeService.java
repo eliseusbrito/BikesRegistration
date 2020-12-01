@@ -58,6 +58,7 @@ public class BikeService {
     }
 
     public Bike updatePatch(Long id, Bike bike) {
+        try{
         Bike entity = bikeRepository.getOne(id);
         if (bike.getDescription() != null) {
             entity.setDescription(bike.getDescription());
@@ -78,6 +79,9 @@ public class BikeService {
             entity.setStore(bike.getStore());
         }
         return bikeRepository.save(entity);
+        } catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException(id);
+        }
     }
 
 }
