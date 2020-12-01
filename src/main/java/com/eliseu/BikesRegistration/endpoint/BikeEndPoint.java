@@ -4,6 +4,9 @@ import com.eliseu.BikesRegistration.model.Bike;
 import com.eliseu.BikesRegistration.service.BikeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -24,8 +27,8 @@ public class BikeEndPoint {
     }
 
     @GetMapping(path = "/bikes/{id}")
-    public ResponseEntity<Bike> getBikeById(@PathVariable("id") Long id
-    ) {
+    public ResponseEntity<Bike> getBikeById(@PathVariable("id") Long id, @AuthenticationPrincipal UserDetails userDetails) {
+        System.out.println(userDetails);
         Bike bike = bikeService.findById(id);
         return ResponseEntity.ok().body(bike);
     }
@@ -39,7 +42,9 @@ public class BikeEndPoint {
     }
 
     @DeleteMapping(path = "/bikes/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Void> delete(@PathVariable Long id, @AuthenticationPrincipal UserDetails userDetails) {
+        System.out.println(userDetails);
         bikeService.delete(id);
         return ResponseEntity.noContent().build();
     }
