@@ -9,6 +9,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,14 +37,18 @@ public class BikeService {
     }
 
     public Bike update(Long id, Bike bike) {
-        Bike entity = bikeRepository.getOne(id);
-        entity.setDescription(bike.getDescription());
-        entity.setModel(bike.getModel());
-        entity.setPrice(bike.getPrice());
-        entity.setPurchaseDate(bike.getPurchaseDate());
-        entity.setBuyerName(bike.getBuyerName());
-        entity.setStore(bike.getStore());
-        return bikeRepository.save(entity);
+        try {
+            Bike entity = bikeRepository.getOne(id);
+            entity.setDescription(bike.getDescription());
+            entity.setModel(bike.getModel());
+            entity.setPrice(bike.getPrice());
+            entity.setPurchaseDate(bike.getPurchaseDate());
+            entity.setBuyerName(bike.getBuyerName());
+            entity.setStore(bike.getStore());
+            return bikeRepository.save(entity);
+        } catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException(id);
+        }
     }
 
     public Bike updatePatch(Long id, Bike bike) {
