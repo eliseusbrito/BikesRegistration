@@ -2,7 +2,9 @@ package com.eliseu.BikesRegistration.service;
 
 import com.eliseu.BikesRegistration.model.Bike;
 import com.eliseu.BikesRegistration.repository.BikeRepository;
+import com.eliseu.BikesRegistration.service.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -22,7 +24,7 @@ public class BikeService {
 
     public Bike findById(Long id) {
         Optional<Bike> obj = bikeRepository.findById(id);
-        return obj.orElseThrow();
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public Bike insert(Bike bike) {
