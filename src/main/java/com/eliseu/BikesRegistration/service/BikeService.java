@@ -5,6 +5,8 @@ import com.eliseu.BikesRegistration.repository.BikeRepository;
 import com.eliseu.BikesRegistration.service.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -33,7 +35,11 @@ public class BikeService {
     }
 
     public void delete(Long id) {
-        bikeRepository.deleteById(id);
+        try{
+            bikeRepository.deleteById(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new ResourceNotFoundException(id);
+        }
     }
 
     public Bike update(Long id, Bike bike) {
