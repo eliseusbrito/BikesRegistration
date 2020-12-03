@@ -20,4 +20,12 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(status).body(err);
     }
 
+    @ExceptionHandler(ResourceFoundException.class)
+    public ResponseEntity<StandardError> resourceFound(ResourceFoundException e, HttpServletRequest request) {
+        String error = "Requisição com parâmetro description inválido! ";
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status).body(err);
+    }
+
 }

@@ -2,6 +2,7 @@ package com.eliseu.BikesRegistration.service;
 
 import com.eliseu.BikesRegistration.model.Bike;
 import com.eliseu.BikesRegistration.repository.BikeRepository;
+import com.eliseu.BikesRegistration.service.exceptions.ResourceFoundException;
 import com.eliseu.BikesRegistration.service.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
@@ -31,6 +32,10 @@ public class BikeService {
     }
 
     public Bike insert(Bike bike) {
+        List<Bike> bikes = bikeRepository.findByDescription(bike.getDescription());
+        if (bikes.size() > 0) {
+            throw new ResourceFoundException(bike.getDescription());
+        }
         return bikeRepository.save(bike);
     }
 

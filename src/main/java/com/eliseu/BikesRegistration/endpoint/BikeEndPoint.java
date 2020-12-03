@@ -34,7 +34,7 @@ public class BikeEndPoint {
     }
 
     @PostMapping(path = "/bikes")
-    public ResponseEntity<?> insert(@Valid @RequestBody Bike bike) {
+    public ResponseEntity<?> insert(@Valid @RequestBody Bike bike) throws Exception {
         bike = bikeService.insert(bike);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(bike.getId()).toUri();
