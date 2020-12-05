@@ -1,6 +1,6 @@
 package com.eliseu.BikesRegistration.service.exceptions;
 
-import com.eliseu.BikesRegistration.endpoint.exceptions.ErrorDetails;
+import com.eliseu.BikesRegistration.controller.exceptions.ErrorDetails;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

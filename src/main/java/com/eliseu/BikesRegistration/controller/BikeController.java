@@ -1,4 +1,4 @@
-package com.eliseu.BikesRegistration.endpoint;
+package com.eliseu.BikesRegistration.controller;
 
 import com.eliseu.BikesRegistration.model.Bike;
 import com.eliseu.BikesRegistration.service.BikeService;
@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("v1")
-public class BikeEndPoint {
+public class BikeController {
     @Autowired
     private BikeService bikeService;
 

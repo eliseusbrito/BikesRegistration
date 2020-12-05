@@ -5,11 +5,7 @@ import com.eliseu.BikesRegistration.repository.BikeRepository;
 import com.eliseu.BikesRegistration.service.exceptions.ResourceFoundException;
 import com.eliseu.BikesRegistration.service.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -40,7 +36,7 @@ public class BikeService {
     }
 
     public void delete(Long id) {
-        try{
+        try {
             bikeRepository.deleteById(id);
         } catch (EmptyResultDataAccessException e) {
             throw new ResourceNotFoundException(id);
@@ -63,27 +59,27 @@ public class BikeService {
     }
 
     public Bike updatePatch(Long id, Bike bike) {
-        try{
-        Bike entity = bikeRepository.getOne(id);
-        if (bike.getDescription() != null) {
-            entity.setDescription(bike.getDescription());
-        }
-        if (bike.getModel() != null) {
-            entity.setModel(bike.getModel());
-        }
-        if (bike.getPrice() != null) {
-            entity.setPrice(bike.getPrice());
-        }
-        if (bike.getPurchaseDate() != null) {
-            entity.setPurchaseDate(bike.getPurchaseDate());
-        }
-        if (bike.getBuyerName() != null) {
-            entity.setBuyerName(bike.getBuyerName());
-        }
-        if (bike.getStore() != null) {
-            entity.setStore(bike.getStore());
-        }
-        return bikeRepository.save(entity);
+        try {
+            Bike entity = bikeRepository.getOne(id);
+            if (bike.getDescription() != null) {
+                entity.setDescription(bike.getDescription());
+            }
+            if (bike.getModel() != null) {
+                entity.setModel(bike.getModel());
+            }
+            if (bike.getPrice() != null) {
+                entity.setPrice(bike.getPrice());
+            }
+            if (bike.getPurchaseDate() != null) {
+                entity.setPurchaseDate(bike.getPurchaseDate());
+            }
+            if (bike.getBuyerName() != null) {
+                entity.setBuyerName(bike.getBuyerName());
+            }
+            if (bike.getStore() != null) {
+                entity.setStore(bike.getStore());
+            }
+            return bikeRepository.save(entity);
         } catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException(id);
         }

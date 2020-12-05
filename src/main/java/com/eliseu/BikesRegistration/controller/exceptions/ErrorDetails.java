@@ -1,4 +1,4 @@
-package com.eliseu.BikesRegistration.endpoint.exceptions;
+package com.eliseu.BikesRegistration.controller.exceptions;
 
 public class ErrorDetails {
     private String title;
