@@ -41,6 +41,16 @@ public class Bike {
         this.store = store;
     }
 
+    public Bike(Long id, @NotBlank(message = "Description is mandatory") String description, @NotBlank(message = "Model is mandatory") String model, @NotNull(message = "Price is mandatory") @Positive Double price, @NotNull(message = "PurchaseDate is mandatory") @Past LocalDate purchaseDate, @NotBlank(message = "BuyerName is mandatory") String buyerName, @NotBlank(message = "Store is mandatory") String store) {
+        this.id = id;
+        this.description = description;
+        this.model = model;
+        this.price = price;
+        this.purchaseDate = purchaseDate;
+        this.buyerName = buyerName;
+        this.store = store;
+    }
+
     public Long getId() {
         return id;
     }
