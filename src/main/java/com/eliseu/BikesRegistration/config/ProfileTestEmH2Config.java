@@ -7,6 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Arrays;
 
@@ -21,9 +22,10 @@ public class ProfileTestEmH2Config implements CommandLineRunner {
     public void run(String... args) throws Exception {
         LocalDate localDate = LocalDate.now();
         LocalDate d1 = LocalDate.of(1990, 10, 8);
-        Bike b1 = new Bike("Bicicleta de Infancia", "Monareta", 800.00, d1, "Eliseu", "MachadoBikes");
-        Bike b2 = new Bike("Bicicleta Atual", "Caloi", 800.00, localDate, "Eliseu", "CésarBikes");
-        Bike b3 = new Bike("Bicicleta dos Sonhos", "Star", 5786.00, LocalDate.of(2020, 11, 20), "Davi", "WorldBikes");
+        LocalDate d2 = LocalDate.of(2021, 02, 27);
+        Bike b1 = new Bike("Bicicleta de Infancia", "Monareta", BigDecimal.valueOf(800.35), d1, "Eliseu", "MachadoBikes");
+        Bike b2 = new Bike("Bicicleta Atual", "Caloi", BigDecimal.valueOf(645.94), d2, "Eliseu", "CésarBikes");
+        Bike b3 = new Bike("Bicicleta dos Sonhos", "Star", BigDecimal.valueOf(5786.55), LocalDate.of(2020, 11, 20), "Davi", "WorldBikes");
         bikeRepository.saveAll(Arrays.asList(b1, b2, b3));
     }
 }

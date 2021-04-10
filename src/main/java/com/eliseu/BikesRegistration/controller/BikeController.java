@@ -46,7 +46,7 @@ public class BikeController {
     public ResponseEntity<Void> delete(@PathVariable Long id, @AuthenticationPrincipal UserDetails userDetails) {
         System.out.println(userDetails);
         bikeService.delete(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping(path = "/bikes/{id}")

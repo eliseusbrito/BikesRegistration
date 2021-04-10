@@ -5,6 +5,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Positive;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
@@ -14,25 +15,31 @@ public class Bike {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @NotBlank(message = "Description is mandatory")
     private String description;
+
     @NotBlank(message = "Model is mandatory")
     private String model;
+
     @NotNull(message = "Price is mandatory")
     @Positive
-    private Double price;
+    private BigDecimal price;
+
     @NotNull(message = "PurchaseDate is mandatory")
     @Past
     private LocalDate purchaseDate;
+
     @NotBlank(message = "BuyerName is mandatory")
     private String buyerName;
+    
     @NotBlank(message = "Store is mandatory")
     private String store;
 
     public Bike() {
     }
 
-    public Bike(String description, String model, Double price, LocalDate purchaseDate, String buyerName, String store) {
+    public Bike(String description, String model, BigDecimal price, LocalDate purchaseDate, String buyerName, String store) {
         this.description = description;
         this.model = model;
         this.price = price;
@@ -41,7 +48,7 @@ public class Bike {
         this.store = store;
     }
 
-    public Bike(Long id, @NotBlank(message = "Description is mandatory") String description, @NotBlank(message = "Model is mandatory") String model, @NotNull(message = "Price is mandatory") @Positive Double price, @NotNull(message = "PurchaseDate is mandatory") @Past LocalDate purchaseDate, @NotBlank(message = "BuyerName is mandatory") String buyerName, @NotBlank(message = "Store is mandatory") String store) {
+    public Bike(Long id, @NotBlank(message = "Description is mandatory") String description, @NotBlank(message = "Model is mandatory") String model, @NotNull(message = "Price is mandatory") @Positive BigDecimal price, @NotNull(message = "PurchaseDate is mandatory") @Past LocalDate purchaseDate, @NotBlank(message = "BuyerName is mandatory") String buyerName, @NotBlank(message = "Store is mandatory") String store) {
         this.id = id;
         this.description = description;
         this.model = model;
@@ -75,11 +82,11 @@ public class Bike {
         this.model = model;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

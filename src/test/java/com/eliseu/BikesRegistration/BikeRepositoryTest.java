@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class BikeRepositoryTest {
 
     @Test
     public void createdShouldPersistData() {
-        Bike bike = new Bike("Jonh's Bike", "MonarkCeci", 1350.55, LocalDate.of(2014, 10, 26), "Jonh", "Bikes Store");
+        Bike bike = new Bike("Jonh's Bike", "MonarkCeci", BigDecimal.valueOf(1350.55), LocalDate.of(2014, 10, 26), "Jonh", "Bikes Store");
         this.bikeRepository.save(bike);
         assertThat(bike.getId()).isNotNull();
         assertThat(bike.getDescription()).isEqualTo("Jonh's Bike");
@@ -33,7 +34,7 @@ public class BikeRepositoryTest {
 
     @Test
     public void deleteShouldRemoveData() {
-        Bike bike = new Bike("Jonh's Bike", "MonarkCeci", 1350.55, LocalDate.of(2014, 10, 26), "Jonh", "Bikes Store");
+        Bike bike = new Bike("Jonh's Bike", "MonarkCeci", BigDecimal.valueOf(1350.55), LocalDate.of(2014, 10, 26), "Jonh", "Bikes Store");
         this.bikeRepository.save(bike);
         bikeRepository.delete(bike);
         assertThat(bikeRepository.findById(bike.getId())).isEmpty();
@@ -41,7 +42,7 @@ public class BikeRepositoryTest {
 
     @Test
     public void updateShouldChangeAndPersistData() {
-        Bike bike = new Bike("Jonh's Bike", "MonarkCeci", 1350.55, LocalDate.of(2014, 10, 26), "Jonh", "Bikes Store");
+        Bike bike = new Bike("Jonh's Bike", "MonarkCeci", BigDecimal.valueOf(1350.55), LocalDate.of(2014, 10, 26), "Jonh", "Bikes Store");
         this.bikeRepository.save(bike);
         bike.setDescription("New Description");
         bike.setModel("New Model");
@@ -52,7 +53,7 @@ public class BikeRepositoryTest {
 
     @Test
     public void findByDescription() {
-        Bike bike = new Bike("Adriam's Bike", "MonarkCeci", 1350.55, LocalDate.of(2014, 10, 26), "Jonh", "Bikes Store");
+        Bike bike = new Bike("Adriam's Bike", "MonarkCeci", BigDecimal.valueOf(1350.55), LocalDate.of(2014, 10, 26), "Jonh", "Bikes Store");
         this.bikeRepository.save(bike);
         List<Bike> bikeList = bikeRepository.findByDescription("Adriam's Bike");
         assertThat(bikeList.size()).isEqualTo(1);
