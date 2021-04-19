@@ -1,6 +1,7 @@
 package com.eliseu.BikesRegistration;
 
 import com.eliseu.BikesRegistration.model.Bike;
+import com.eliseu.BikesRegistration.model.Buyer;
 import com.eliseu.BikesRegistration.repository.BikeRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -24,7 +26,8 @@ public class BikeRepositoryTest {
 
     @Test
     public void createdShouldPersistData() {
-        Bike bike = new Bike("Jonh's Bike", "MonarkCeci", BigDecimal.valueOf(1350.55), LocalDate.of(2014, 10, 26), "Jonh", "Bikes Store");
+        Buyer buyer = new Buyer();
+        Bike bike = new Bike("Jonh's Bike", "MonarkCeci", BigDecimal.valueOf(1350.55), LocalDate.of(2014, 10, 26), buyer, "Bikes Store", LocalDateTime.now(), LocalDateTime.now(), 0);
         this.bikeRepository.save(bike);
         assertThat(bike.getId()).isNotNull();
         assertThat(bike.getDescription()).isEqualTo("Jonh's Bike");
@@ -34,7 +37,8 @@ public class BikeRepositoryTest {
 
     @Test
     public void deleteShouldRemoveData() {
-        Bike bike = new Bike("Jonh's Bike", "MonarkCeci", BigDecimal.valueOf(1350.55), LocalDate.of(2014, 10, 26), "Jonh", "Bikes Store");
+        Buyer buyer = new Buyer();
+        Bike bike = new Bike("Jonh's Bike", "MonarkCeci", BigDecimal.valueOf(1350.55), LocalDate.of(2014, 10, 26), buyer, "Bikes Store",LocalDateTime.now(), LocalDateTime.now(), 0);
         this.bikeRepository.save(bike);
         bikeRepository.delete(bike);
         assertThat(bikeRepository.findById(bike.getId())).isEmpty();
@@ -42,7 +46,8 @@ public class BikeRepositoryTest {
 
     @Test
     public void updateShouldChangeAndPersistData() {
-        Bike bike = new Bike("Jonh's Bike", "MonarkCeci", BigDecimal.valueOf(1350.55), LocalDate.of(2014, 10, 26), "Jonh", "Bikes Store");
+        Buyer buyer = new Buyer();
+        Bike bike = new Bike("Jonh's Bike", "MonarkCeci", BigDecimal.valueOf(1350.55), LocalDate.of(2014, 10, 26), buyer, "Bikes Store",LocalDateTime.now(), LocalDateTime.now(), 0);
         this.bikeRepository.save(bike);
         bike.setDescription("New Description");
         bike.setModel("New Model");
@@ -53,7 +58,8 @@ public class BikeRepositoryTest {
 
     @Test
     public void findByDescription() {
-        Bike bike = new Bike("Adriam's Bike", "MonarkCeci", BigDecimal.valueOf(1350.55), LocalDate.of(2014, 10, 26), "Jonh", "Bikes Store");
+        Buyer buyer = new Buyer();
+        Bike bike = new Bike("Adriam's Bike", "MonarkCeci", BigDecimal.valueOf(1350.55), LocalDate.of(2014, 10, 26), buyer, "Bikes Store",LocalDateTime.now(), LocalDateTime.now(), 0);
         this.bikeRepository.save(bike);
         List<Bike> bikeList = bikeRepository.findByDescription("Adriam's Bike");
         assertThat(bikeList.size()).isEqualTo(1);

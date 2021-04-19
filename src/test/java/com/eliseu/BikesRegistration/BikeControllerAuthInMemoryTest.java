@@ -1,6 +1,7 @@
 package com.eliseu.BikesRegistration;
 
 import com.eliseu.BikesRegistration.model.Bike;
+import com.eliseu.BikesRegistration.model.Buyer;
 import com.eliseu.BikesRegistration.repository.BikeRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
@@ -25,6 +26,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -54,7 +56,8 @@ public class BikeControllerAuthInMemoryTest {
 
     @Before
     public void setup() {
-        Bike bike = new Bike(1L, "Before's Bike", "BB", BigDecimal.valueOf(2598.30), LocalDate.of(2014, 10, 26), "Jonh", "Bikes Store");
+        Buyer buyer = new Buyer();
+        Bike bike = new Bike(1L, "Before's Bike", "BB", BigDecimal.valueOf(2598.30), LocalDate.of(2014, 10, 26), buyer, "Bikes Store",LocalDateTime.now(), LocalDateTime.now(), 0);
         BDDMockito.when(bikeRepository.findById(bike.getId())).thenReturn(java.util.Optional.of(bike));
     }
 
@@ -76,8 +79,9 @@ public class BikeControllerAuthInMemoryTest {
 
     @Test
     public void listBikesWhenUsernameAndPasswordAreCorrectShouldReturnStatusCode200() {
-        List<Bike> bikes = asList(new Bike(2L, "Jonh's Bike", "Caloi", BigDecimal.valueOf(850.30), LocalDate.of(2012, 12, 16), "Jonh", "Bikes Store"),
-                new Bike(3L, "Marias's Bike", "MonarkCeci", BigDecimal.valueOf(1350.55), LocalDate.of(2014, 10, 26), "Maria", "Bikes Store"));
+        Buyer buyer = new Buyer();
+        List<Bike> bikes = asList(new Bike(2L, "Jonh's Bike", "Caloi", BigDecimal.valueOf(850.30), LocalDate.of(2012, 12, 16), buyer, "Bikes Store", LocalDateTime.now(), LocalDateTime.now(), 0),
+                new Bike(3L, "Marias's Bike", "MonarkCeci", BigDecimal.valueOf(1350.55), LocalDate.of(2014, 10, 26), buyer, "Bikes Store", LocalDateTime.now(), LocalDateTime.now(), 0));
         BDDMockito.when(bikeRepository.findAll()).thenReturn(bikes);
         ResponseEntity<String> response = restTemplate.getForEntity("/v1/bikes", String.class);
         Assertions.assertThat(response.getStatusCodeValue()).isEqualTo(200);
@@ -126,7 +130,8 @@ public class BikeControllerAuthInMemoryTest {
 
     @Test
     public void createWhenDescriptionIsNullShouldReturnStatusCode400BadRequest() {
-        Bike bike = new Bike(3L, "", "MonarkCeci", BigDecimal.valueOf(1350.55), LocalDate.of(2014, 10, 26), "Maria", "Bikes Store");
+        Buyer buyer = new Buyer();
+        Bike bike = new Bike(3L, "", "MonarkCeci", BigDecimal.valueOf(1350.55), LocalDate.of(2014, 10, 26), buyer, "Bikes Store", LocalDateTime.now(), LocalDateTime.now(), 0);
         BDDMockito.when(bikeRepository.save(bike)).thenReturn(bike);
         ResponseEntity<String> response = restTemplate.postForEntity("/v1/bikes/", bike, String.class);
         Assertions.assertThat(response.getStatusCodeValue()).isEqualTo(400);
@@ -135,7 +140,8 @@ public class BikeControllerAuthInMemoryTest {
 
     @Test
     public void createShouldPersistDataAndReturnStatusCode201() throws Exception {
-        Bike bike = new Bike("Cecizinha", "MonarkCeci", BigDecimal.valueOf(1350.55), LocalDate.of(2014, 10, 26), "Maria", "Bikes Store");
+        Buyer buyer = new Buyer();
+        Bike bike = new Bike(1L, "Cecizinha", "MonarkCeci", BigDecimal.valueOf(1350.55), LocalDate.of(2014, 10, 26), buyer, "Bikes Store", LocalDateTime.now(), LocalDateTime.now(), 0);
         BDDMockito.when(bikeRepository.save(bike)).thenReturn(bike);
         ResponseEntity<Bike> responseTemp = restTemplate.getForEntity("/v1/bikes/3", Bike.class);//testestestesa
         System.out.println(responseTemp);

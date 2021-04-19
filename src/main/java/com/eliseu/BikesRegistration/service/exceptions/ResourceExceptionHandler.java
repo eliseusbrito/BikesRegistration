@@ -28,4 +28,10 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(status).body(err);
     }
 
+    @ExceptionHandler(UnnecessaryUpdateException.class)
+    public ResponseEntity<String> unnecessaryUpdateException(UnnecessaryUpdateException ex) {
+        HttpStatus status = HttpStatus.OK;
+        return ResponseEntity.status(status).body(ex.getMessage());
+    }
+
 }

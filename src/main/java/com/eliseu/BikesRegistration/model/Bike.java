@@ -1,61 +1,66 @@
 package com.eliseu.BikesRegistration.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Positive;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "tb_bike")
-public class Bike {
+public class Bike implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Description is mandatory")
     private String description;
 
-    @NotBlank(message = "Model is mandatory")
     private String model;
 
-    @NotNull(message = "Price is mandatory")
-    @Positive
     private BigDecimal price;
 
-    @NotNull(message = "PurchaseDate is mandatory")
-    @Past
     private LocalDate purchaseDate;
 
-    @NotBlank(message = "BuyerName is mandatory")
-    private String buyerName;
+    @ManyToOne
+    @JoinColumn(name="buyer_id")
+    private Buyer buyer;
     
-    @NotBlank(message = "Store is mandatory")
     private String store;
+
+    private LocalDateTime cadastro;
+
+    private LocalDateTime edicaoCadastro;
+
+    private int quantEdicaoCadastro;
 
     public Bike() {
     }
 
-    public Bike(String description, String model, BigDecimal price, LocalDate purchaseDate, String buyerName, String store) {
-        this.description = description;
-        this.model = model;
-        this.price = price;
-        this.purchaseDate = purchaseDate;
-        this.buyerName = buyerName;
-        this.store = store;
-    }
-
-    public Bike(Long id, @NotBlank(message = "Description is mandatory") String description, @NotBlank(message = "Model is mandatory") String model, @NotNull(message = "Price is mandatory") @Positive BigDecimal price, @NotNull(message = "PurchaseDate is mandatory") @Past LocalDate purchaseDate, @NotBlank(message = "BuyerName is mandatory") String buyerName, @NotBlank(message = "Store is mandatory") String store) {
+    public Bike(Long id, String description, String model, BigDecimal price, LocalDate purchaseDate, Buyer buyer, String store, LocalDateTime cadastro, LocalDateTime edicaoCadastro, int quantEdicaoCadastro) {
         this.id = id;
         this.description = description;
         this.model = model;
         this.price = price;
         this.purchaseDate = purchaseDate;
-        this.buyerName = buyerName;
+        this.buyer = buyer;
         this.store = store;
+        this.cadastro = cadastro;
+        this.edicaoCadastro = edicaoCadastro;
+        this.quantEdicaoCadastro = quantEdicaoCadastro;
+    }
+
+    public Bike(String description, String model, BigDecimal price, LocalDate purchaseDate, Buyer buyer, String store, LocalDateTime cadastro, LocalDateTime edicaoCadastro, int quantEdicaoCadastro) {
+        this.description = description;
+        this.model = model;
+        this.price = price;
+        this.purchaseDate = purchaseDate;
+        this.buyer = buyer;
+        this.store = store;
+        this.cadastro = cadastro;
+        this.edicaoCadastro = edicaoCadastro;
+        this.quantEdicaoCadastro = quantEdicaoCadastro;
     }
 
     public Long getId() {
@@ -98,12 +103,12 @@ public class Bike {
         this.purchaseDate = purchaseDate;
     }
 
-    public String getBuyerName() {
-        return buyerName;
+    public Buyer getBuyer() {
+        return buyer;
     }
 
-    public void setBuyerName(String buyerName) {
-        this.buyerName = buyerName;
+    public void setBuyer(Buyer buyer) {
+        this.buyer = buyer;
     }
 
     public String getStore() {
@@ -114,16 +119,43 @@ public class Bike {
         this.store = store;
     }
 
+    public LocalDateTime getCadastro() {
+        return cadastro;
+    }
+
+    public void setCadastro(LocalDateTime cadastro) {
+        this.cadastro = cadastro;
+    }
+
+    public LocalDateTime getEdicaoCadastro() {
+        return edicaoCadastro;
+    }
+
+    public void setEdicaoCadastro(LocalDateTime edicaoCadastro) {
+        this.edicaoCadastro = edicaoCadastro;
+    }
+
+    public int getQuantEdicaoCadastro() {
+        return quantEdicaoCadastro;
+    }
+
+    public void setQuantEdicaoCadastro(int quantEdicaoCadastro) {
+        this.quantEdicaoCadastro = quantEdicaoCadastro;
+    }
+
     @Override
     public String toString() {
-        return "Bikes{" +
+        return "Bike{" +
                 "id=" + id +
                 ", description='" + description + '\'' +
                 ", model='" + model + '\'' +
                 ", price=" + price +
                 ", purchaseDate=" + purchaseDate +
-                ", buyerName='" + buyerName + '\'' +
+                ", buyer=" + buyer +
                 ", store='" + store + '\'' +
+                ", cadastro=" + cadastro +
+                ", edicaoCadastro=" + edicaoCadastro +
+                ", quantEdicaoCadastro=" + quantEdicaoCadastro +
                 '}';
     }
 

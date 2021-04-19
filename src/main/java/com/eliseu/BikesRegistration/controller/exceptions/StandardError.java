@@ -4,24 +4,25 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.Instant;
 
+
 public class StandardError {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant timestamp;
     private Integer status;
-    private String error;
     private String message;
     private String path;
+    private String error;
 
     public StandardError() {
     }
 
-    public StandardError(Instant timestamp, Integer status, String error, String message, String path) {
+    public StandardError(Instant timestamp, Integer status, String message, String path, String error) {
         this.timestamp = timestamp;
         this.status = status;
-        this.error = error;
         this.message = message;
         this.path = path;
+        this.error = error;
     }
 
     public Instant getTimestamp() {

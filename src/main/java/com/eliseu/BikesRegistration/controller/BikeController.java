@@ -1,5 +1,6 @@
 package com.eliseu.BikesRegistration.controller;
 
+import com.eliseu.BikesRegistration.dto.BikeDto;
 import com.eliseu.BikesRegistration.model.Bike;
 import com.eliseu.BikesRegistration.service.BikeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,8 @@ public class BikeController {
     }
 
     @PostMapping(path = "/bikes")
-    public ResponseEntity<?> insert(@Valid @RequestBody Bike bike) throws Exception {
-        bike = bikeService.insert(bike);
+    public ResponseEntity<?> insert(@Valid @RequestBody BikeDto bikeDto) throws Exception {
+        Bike bike = bikeService.insert(bikeDto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(bike.getId()).toUri();
         return ResponseEntity.created(uri).body(bike);
@@ -50,14 +51,14 @@ public class BikeController {
     }
 
     @PutMapping(path = "/bikes/{id}")
-    public ResponseEntity<Bike> update(@PathVariable Long id, @RequestBody Bike bike) {
-        bike = bikeService.update(id, bike);
+    public ResponseEntity<Bike> update(@PathVariable Long id, @RequestBody BikeDto bikeDto) {
+        Bike bike = bikeService.update(id, bikeDto);
         return ResponseEntity.ok().body(bike);
     }
 
     @PatchMapping(path = "/bikes/{id}")
-    public ResponseEntity<Bike> updatePatch(@PathVariable Long id, @RequestBody Bike bike) {
-        bike = bikeService.updatePatch(id, bike);
+    public ResponseEntity<Bike> updatePatch(@PathVariable Long id, @RequestBody BikeDto bikeDto) {
+        Bike bike = bikeService.updatePatch(id, bikeDto);
         return ResponseEntity.ok().body(bike);
     }
 }
