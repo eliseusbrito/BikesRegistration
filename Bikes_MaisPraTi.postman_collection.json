@@ -1,0 +1,561 @@
+{
+	"info": {
+		"_postman_id": "e6d9a1ad-1896-4313-84f7-4586193ccec1",
+		"name": "Bikes_MaisPraTi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Segurança em Memoria",
+			"item": [
+				{
+					"name": "Buyers",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "maisprati",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "eliseu",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8050/v1/buyers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8050",
+							"path": [
+								"v1",
+								"buyers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bikes",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "maisprati",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "eliseu",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8050/v1/bikes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8050",
+							"path": [
+								"v1",
+								"bikes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bike by Id",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "maisprati",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8050/v1/bikes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8050",
+							"path": [
+								"v1",
+								"bikes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buyer by Id",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "maisprati",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8050/v1/buyers/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8050",
+							"path": [
+								"v1",
+								"buyers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Buyer with user Eliseu",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "maisprati",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "eliseu",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Maria\",\r\n    \"sobrenome\":\"Silva\",\r\n    \"email\":\"maria@gmail.com\",\r\n    \"telefone\":\"35955885\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8050/v1/buyers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8050",
+							"path": [
+								"v1",
+								"buyers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Bike with user Eliseu",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "maisprati",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "eliseu",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Monark Reliquia\",\r\n    \"model\": \"Monark10\",\r\n    \"price\": 1200.0,\r\n    \"purchaseDate\": \"2000-12-25\",\r\n    \"idBuyer\": 1,\r\n    \"store\": \"OldBikes\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8050/v1/bikes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8050",
+							"path": [
+								"v1",
+								"bikes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Bike with admin",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "maisprati",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Monark Das Antiga\",\r\n    \"model\": \"Monark10\",\r\n    \"price\": 1500.00,\r\n    \"purchaseDate\": \"2010-10-20\",\r\n    \"idBuyer\": 3,\r\n    \"store\": \"OldBikes\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8050/v1/bikes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8050",
+							"path": [
+								"v1",
+								"bikes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put Buyer with admin",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "maisprati",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Maria\",\r\n    \"sobrenome\": \"Silva\",\r\n    \"email\": \"maria@gmail.com\",\r\n    \"telefone\": \"35955885\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8050/v1/buyers/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8050",
+							"path": [
+								"v1",
+								"buyers",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put Bike with admin",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "maisprati",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Montada\",\r\n    \"model\": \"Personalizad1530\",\r\n    \"price\": \"3333.00\",\r\n    \"purchaseDate\": \"1995-01-26\",\r\n    \"idBuyer\": 1,\r\n    \"store\": \"GoldBikes\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8050/v1/bikes/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8050",
+							"path": [
+								"v1",
+								"bikes",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put Bike with user",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "maisprati",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Montada\",\r\n    \"model\": \"Personalizad\",\r\n    \"price\": \"3333.00\",\r\n    \"purchaseDate\": \"1995-01-26\",\r\n    \"idBuyer\": 1,\r\n    \"store\": \"GoldBikes\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8050/v1/bikes/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8050",
+							"path": [
+								"v1",
+								"bikes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buyer with admin",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "maisprati",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8050/v1/buyers/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8050",
+							"path": [
+								"v1",
+								"buyers",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bike with admin",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "maisprati",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8050/v1/bikes/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8050",
+							"path": [
+								"v1",
+								"bikes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bike with user Eliseu",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8050/v1/bikes/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8050",
+							"path": [
+								"v1",
+								"bikes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch Bike with admin",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "maisprati",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"model\": \"PersonalizadAbril180831\"\r\n}\r\n  ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8050/v1/bikes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8050",
+							"path": [
+								"v1",
+								"bikes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
